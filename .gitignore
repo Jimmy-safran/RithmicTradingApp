@@ -1,0 +1,18 @@
+# Visual Studio temporary files
+.vs/
+*.vcxproj.user
+*.obj
+*.exe
+*.pdb
+*.idb
+*.ipch
+*.tlog
+*.log
+*.suo
+*.user
+*.cache
+*.ilk
+
+# Build folders
+bin/
+obj/
