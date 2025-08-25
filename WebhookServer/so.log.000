@@ -1,0 +1,146 @@
+1755862512.964000 [39516] [52636] : R | API+ 13.5.0.0 : The R | API log file has been opened.
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : The log file fd is 3.
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : REngineParams::envp : 000002324496BB90
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : REngineParams::envp[0] : MML_DMN_SRVR_ADDR=ritpz01004.01.rithmic.com:65000~ritpz04063.04.rithmic.com:65000~ritpz01004.01.rithmic.net:65000~ritpz04063.04.rithmic.net:65000~ritpz01004.01.theomne.net:65000~ritpz04063.04.theomne.net:65000~ritpz01004.01.theomne.com:65000~ritpz04063.04.theomne.com:65000
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : REngineParams::envp[1] : MML_DOMAIN_NAME=rithmic_paper_prod_domain
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : REngineParams::envp[2] : MML_LIC_SRVR_ADDR=ritpz04063.04.rithmic.com:56000~ritpz01004.01.rithmic.com:56000~ritpz04063.04.rithmic.net:56000~ritpz04063.04.theomne.net:56000~ritpz04063.04.theomne.com:56000~ritpz01000.01.rithmic.com:56000~ritpz01001.01.rithmic.com:56000~ritpz01000.01.rithmic.net:56000~ritpz01001.01.rithmic.net:56000~ritpz01000.01.theomne.net:56000~ritpz01001.01.theomne.net:56000~ritpz01000.01.theomne.com:56000~ritpz01001.01.theomne.com:56000~ritpz24050.rithmic.com:56000~ritpz24050.rithmic.net:56000~ritpz24050.theomne.net:56000~ritpz24050.theomne.com:56000~ritpz23010.rithmic.com:56000~ritpz23010.rithmic.net:56000~ritpz23010.theomne.net:56000~ritpz23010.theomne.com:56000~ritpz23011.rithmic.com:56000~ritpz23011.rithmic.net:56000~ritpz23011.theomne.net:56000~ritpz23011.theomne.com:56000~ritpz24013.rithmic.com:56000~ritpz24013.rithmic.net:56000~ritpz24013.theomne.net:56000~ritpz24013.theomne.com:56000
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : REngineParams::envp[3] : MML_LOC_BROK_ADDR=ritpz04063.04.rithmic.com:64100
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : REngineParams::envp[4] : MML_LOGGER_ADDR=ritpz04063.04.rithmic.com:45454~ritpz01004.01.rithmic.com:45454~ritpz04063.04.rithmic.net:45454~ritpz01004.01.rithmic.net:45454~ritpz04063.04.theomne.net:45454~ritpz01004.01.theomne.net:45454~ritpz04063.04.theomne.com:45454~ritpz01004.01.theomne.com:45454
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : REngineParams::envp[5] : MML_LOG_TYPE=log_net
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : REngineParams::envp[6] : MML_SSL_CLNT_AUTH_FILE=rithmic_ssl_cert_auth_params
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : REngineParams::envp[7] : USER=szewald.a860Paper@amp.com
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : REngineParams::sAppName : alsz:PLIQUERAexecutor
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : REngineParams::sAppVersion : 1.0.0.0
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : REngineParams::pAdmCallbacks : 0000023244980660
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : REngineParams::pContext : 0000000000000000
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : OS Name : Windows
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : OS Version : 6.2
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : Machine Type : x86_64 (WinOS)
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : Compilation : 64-bit /MDd (VisualStudio2015)
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : AdminName : alsz:PLIQUERAexecutor-1.0.0.0-szewald.a860Paper@amp.com-39516-1755862512.965000
+1755862512.965000 [39516] [52636] : R | API+ 13.5.0.0 : os_init() : in
+1755862513.645000 [39516] [52636] : R | API+ 13.5.0.0 : Host Name : server
+1755862513.645000 [39516] [52636] : R | API+ 13.5.0.0 : Local Address : 192.168.222.1
+1755862513.673000 [39516] [52636] : R | API+ 13.5.0.0 : Required SSL file cannot be opened. : rithmic_ssl_cert_auth_params.
+1755862513.673000 [39516] [52636] : R | API+ 13.5.0.0 : SSL environment error (1).
+1755862513.673000 [39516] [52636] : R | API+ 13.5.0.0 : error (1) : REngineImp::init().
+1755862513.673000 [39516] [52636] : R | API+ 13.5.0.0 : The R | API log file has been closed.
+1755862711.193000 [30464] [39252] : R | API+ 13.5.0.0 : The R | API log file has been opened.
+1755862711.193000 [30464] [39252] : R | API+ 13.5.0.0 : The log file fd is 3.
+1755862711.193000 [30464] [39252] : R | API+ 13.5.0.0 : REngineParams::envp : 000001E9ED6C0830
+1755862711.193000 [30464] [39252] : R | API+ 13.5.0.0 : REngineParams::envp[0] : MML_DMN_SRVR_ADDR=ritpz01004.01.rithmic.com:65000~ritpz04063.04.rithmic.com:65000~ritpz01004.01.rithmic.net:65000~ritpz04063.04.rithmic.net:65000~ritpz01004.01.theomne.net:65000~ritpz04063.04.theomne.net:65000~ritpz01004.01.theomne.com:65000~ritpz04063.04.theomne.com:65000
+1755862711.193000 [30464] [39252] : R | API+ 13.5.0.0 : REngineParams::envp[1] : MML_DOMAIN_NAME=rithmic_paper_prod_domain
+1755862711.193000 [30464] [39252] : R | API+ 13.5.0.0 : REngineParams::envp[2] : MML_LIC_SRVR_ADDR=ritpz04063.04.rithmic.com:56000~ritpz01004.01.rithmic.com:56000~ritpz04063.04.rithmic.net:56000~ritpz04063.04.theomne.net:56000~ritpz04063.04.theomne.com:56000~ritpz01000.01.rithmic.com:56000~ritpz01001.01.rithmic.com:56000~ritpz01000.01.rithmic.net:56000~ritpz01001.01.rithmic.net:56000~ritpz01000.01.theomne.net:56000~ritpz01001.01.theomne.net:56000~ritpz01000.01.theomne.com:56000~ritpz01001.01.theomne.com:56000~ritpz24050.rithmic.com:56000~ritpz24050.rithmic.net:56000~ritpz24050.theomne.net:56000~ritpz24050.theomne.com:56000~ritpz23010.rithmic.com:56000~ritpz23010.rithmic.net:56000~ritpz23010.theomne.net:56000~ritpz23010.theomne.com:56000~ritpz23011.rithmic.com:56000~ritpz23011.rithmic.net:56000~ritpz23011.theomne.net:56000~ritpz23011.theomne.com:56000~ritpz24013.rithmic.com:56000~ritpz24013.rithmic.net:56000~ritpz24013.theomne.net:56000~ritpz24013.theomne.com:56000
+1755862711.193000 [30464] [39252] : R | API+ 13.5.0.0 : REngineParams::envp[3] : MML_LOC_BROK_ADDR=ritpz04063.04.rithmic.com:64100
+1755862711.193000 [30464] [39252] : R | API+ 13.5.0.0 : REngineParams::envp[4] : MML_LOGGER_ADDR=ritpz04063.04.rithmic.com:45454~ritpz01004.01.rithmic.com:45454~ritpz04063.04.rithmic.net:45454~ritpz01004.01.rithmic.net:45454~ritpz04063.04.theomne.net:45454~ritpz01004.01.theomne.net:45454~ritpz04063.04.theomne.com:45454~ritpz01004.01.theomne.com:45454
+1755862711.193000 [30464] [39252] : R | API+ 13.5.0.0 : REngineParams::envp[5] : MML_LOG_TYPE=log_net
+1755862711.193000 [30464] [39252] : R | API+ 13.5.0.0 : REngineParams::envp[6] : MML_SSL_CLNT_AUTH_FILE=rithmic_ssl_cert_auth_params
+1755862711.193000 [30464] [39252] : R | API+ 13.5.0.0 : REngineParams::envp[7] : USER=szewald.a860Paper@amp.com
+1755862711.193000 [30464] [39252] : R | API+ 13.5.0.0 : REngineParams::sAppName : alsz:PLIQUERAexecutor
+1755862711.193000 [30464] [39252] : R | API+ 13.5.0.0 : REngineParams::sAppVersion : 1.0.0.0
+1755862711.193000 [30464] [39252] : R | API+ 13.5.0.0 : REngineParams::pAdmCallbacks : 000001E9ED6D7AE0
+1755862711.193000 [30464] [39252] : R | API+ 13.5.0.0 : REngineParams::pContext : 0000000000000000
+1755862711.194000 [30464] [39252] : R | API+ 13.5.0.0 : OS Name : Windows
+1755862711.194000 [30464] [39252] : R | API+ 13.5.0.0 : OS Version : 6.2
+1755862711.194000 [30464] [39252] : R | API+ 13.5.0.0 : Machine Type : x86_64 (WinOS)
+1755862711.194000 [30464] [39252] : R | API+ 13.5.0.0 : Compilation : 64-bit /MDd (VisualStudio2015)
+1755862711.194000 [30464] [39252] : R | API+ 13.5.0.0 : AdminName : alsz:PLIQUERAexecutor-1.0.0.0-szewald.a860Paper@amp.com-30464-1755862711.194000
+1755862711.194000 [30464] [39252] : R | API+ 13.5.0.0 : os_init() : in
+1755862711.567000 [30464] [39252] : R | API+ 13.5.0.0 : Host Name : server
+1755862711.568000 [30464] [39252] : R | API+ 13.5.0.0 : Local Address : 192.168.222.1
+1755862711.594000 [30464] [39252] : R | API+ 13.5.0.0 : Found required SSL file : rithmic_ssl_cert_auth_params.
+1755862711.594000 [30464] [39252] : R | API+ 13.5.0.0 : Using default cert name.
+1755862711.594000 [30464] [39252] : R | API+ 13.5.0.0 : OmneEngine::OmneEngine : in
+1755862711.608000 [30464] [39252] : R | API+ 13.5.0.0 : OmneEngine::enableAdminHeartbeat : in
+1755862711.609000 [30464] [39252] : R | API+ 13.5.0.0 : OmneLock::OmneLock : in
+1755862711.609000 [30464] [39252] : R | API+ 13.5.0.0 : OmneCounter::OmneCounter : in
+1755862711.609000 [30464] [39252] : R | API+ 13.5.0.0 : REngineHook::REngineHook : in
+1755862711.610000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::getOmne : in
+1755862711.610000 [30464] [39252] : R | API+ 13.5.0.0 : ShutdownSignal::ShutdownSignal : in
+1755862711.610000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::getOmne : in
+1755862711.610000 [30464] [39252] : R | API+ 13.5.0.0 : am_open : in
+1755862711.610000 [30464] [39252] : R | API+ 13.5.0.0 : registerRoutines : in
+1755862711.610000 [30464] [39252] : R | API+ 13.5.0.0 : registerAdminPages : in
+1755862711.610000 [30464] [39252] : R | API+ 13.5.0.0 : initVec : in
+1755862711.611000 [30464] [39252] : R | API+ 13.5.0.0 : addVersion : in
+1755862711.611000 [30464] [39252] : R | API+ 13.5.0.0 : addVersion : in
+1755862711.611000 [30464] [39252] : R | API+ 13.5.0.0 : clearBlacklistTimer : in
+1755862711.611000 [30464] [39252] : R | API+ 13.5.0.0 : initSession : in
+1755862711.641000 [30464] [39252] : R | API+ 13.5.0.0 : The REngine has been opened.
+1755862711.661000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::login : in
+1755862711.661000 [30464] [39252] : R | API+ 13.5.0.0 : logging in.
+1755862711.661000 [30464] [39252] : R | API+ 13.5.0.0 : LoginParams : 000000B932CFDDB0
+1755862711.662000 [30464] [39252] : R | API+ 13.5.0.0 : LoginParams::pCallbacks : 000001E9F4694D70
+1755862711.663000 [30464] [39252] : R | API+ 13.5.0.0 : LoginParams::sMdEnvKey : <empty>
+1755862711.664000 [30464] [39252] : R | API+ 13.5.0.0 : LoginParams::sMdUser : szewald.a860Paper@amp.com
+1755862711.665000 [30464] [39252] : R | API+ 13.5.0.0 : LoginParams::sMdCnnctPt : login_agent_tp_paperc
+1755862711.665000 [30464] [39252] : R | API+ 13.5.0.0 : LoginParams::sTsEnvKey : <empty>
+1755862711.666000 [30464] [39252] : R | API+ 13.5.0.0 : LoginParams::sTsUser : szewald.a860Paper@amp.com
+1755862711.667000 [30464] [39252] : R | API+ 13.5.0.0 : LoginParams::sTsCnnctPt : login_agent_op_paperc
+1755862711.667000 [30464] [39252] : R | API+ 13.5.0.0 : LoginParams::sPnlCnnctPt : <empty>
+1755862711.668000 [30464] [39252] : R | API+ 13.5.0.0 : LoginParams::sIhEnvKey : <empty>
+1755862711.669000 [30464] [39252] : R | API+ 13.5.0.0 : LoginParams::sIhUser : <empty>
+1755862711.669000 [30464] [39252] : R | API+ 13.5.0.0 : LoginParams::sIhCnnctPt : <empty>
+1755862711.670000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::getOmne : in
+1755862711.670000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::getAppName : in
+1755862711.670000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::getAppVersion : in
+1755862711.670000 [30464] [39252] : R | API+ 13.5.0.0 : OmneStreamEngine::OmneStreamEngine : in
+1755862711.673000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::getOmne : in
+1755862711.674000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::getAppName : in
+1755862711.674000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::getAppVersion : in
+1755862712.274000 [30464] [61308] : R | API+ 13.5.0.0 : REngine::getOmne : in
+1755862712.274000 [30464] [61308] : R | API+ 13.5.0.0 : login_agent_tp_paperc : fd : 652
+1755862712.274000 [30464] [61308] : R | API+ 13.5.0.0 : login_agent_tp_paperc : Local Address : 95.216.40.114:12624
+1755862712.274000 [30464] [61308] : R | API+ 13.5.0.0 : login_agent_tp_paperc : Peer Address : 208.97.247.103:40562
+1755862712.274000 [30464] [61308] : R | API+ 13.5.0.0 : AlertInfo : ||Market Data Connection Opened|1|1|0|
+1755862712.274000 [30464] [61308] : R | API+ 13.5.0.0 : RCallbacks::Alert : in
+1755862712.274000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::getOmne : in
+1755862712.274000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::getAppName : in
+1755862712.274000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::getAppVersion : in
+1755862712.274000 [30464] [39252] : R | API+ 13.5.0.0 : OmneStreamEngine::OmneStreamEngine : in
+1755862712.278000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::getOmne : in
+1755862712.278000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::getAppName : in
+1755862712.278000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::getAppVersion : in
+1755862712.391000 [30464] [61308] : R | API+ 13.5.0.0 : logging into Market Data Connection : conn id : 1 : rp code : 0
+1755862712.392000 [30464] [61308] : R | API+ 13.5.0.0 : AlertInfo : ||Market Data Connection Login Complete|4|1|0|ok
+1755862712.392000 [30464] [61308] : R | API+ 13.5.0.0 : RCallbacks::Alert : in
+1755862712.906000 [30464] [61308] : R | API+ 13.5.0.0 : REngine::getOmne : in
+1755862712.906000 [30464] [61308] : R | API+ 13.5.0.0 : login_agent_op_paperc : fd : 612
+1755862712.906000 [30464] [61308] : R | API+ 13.5.0.0 : login_agent_op_paperc : Local Address : 95.216.40.114:12628
+1755862712.906000 [30464] [61308] : R | API+ 13.5.0.0 : login_agent_op_paperc : Peer Address : 128.177.47.171:40254
+1755862712.906000 [30464] [61308] : R | API+ 13.5.0.0 : AlertInfo : ||Trading System Connection Opened|1|2|0|
+1755862712.906000 [30464] [61308] : R | API+ 13.5.0.0 : RCallbacks::Alert : in
+1755862713.023000 [30464] [61308] : R | API+ 13.5.0.0 : logging into Trading System Connection : conn id : 2 : rp code : 0
+1755862713.024000 [30464] [61308] : R | API+ 13.5.0.0 : AlertInfo : ||Trading System Connection Login Complete|4|2|0|ok
+1755862713.024000 [30464] [61308] : R | API+ 13.5.0.0 : RCallbacks::Alert : in
+1755862713.141000 [30464] [61308] : R | API+ 13.5.0.0 : REngine::getAccounts : in
+1755862713.259000 [30464] [61308] : R | API+ 13.5.0.0 : RCallbacks::AccountList : in
+1755862713.259000 [30464] [61308] : R | API+ 13.5.0.0 : REngine::subscribeOrder(AMPGlobal|AMP-Paper|Paper201860) : in
+1755862713.918000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::getPriceIncrInfo : in
+1755862714.052000 [30464] [61308] : R | API+ 13.5.0.0 : REngine::getPriceIncrInfo : in
+1755862714.052000 [30464] [61308] : R | API+ 13.5.0.0 : RCallbacks::PriceIncrUpdate : in
+1755862714.920000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::listTradeRoutes : in
+1755862715.036000 [30464] [61308] : R | API+ 13.5.0.0 : RCallbacks::TradeRouteList : in
+1755862715.923000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::sendOrder(market) : in
+1755862716.038000 [30464] [61308] : R | API+ 13.5.0.0 : RCallbacks::LineUpdate(2293443009) : in
+1755862716.038000 [30464] [61308] : R | API+ 13.5.0.0 : RCallbacks::LineUpdate(2293443009) : in
+1755862716.038000 [30464] [61308] : R | API+ 13.5.0.0 : RCallbacks::FailureReport(2293443009) : in
+1755862716.040000 [30464] [61308] : R | API+ 13.5.0.0 : RCallbacks::LineUpdate(2293443009) : in
+1755862716.925000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::logoutRepository : in
+1755862716.925000 [30464] [39252] : R | API+ 13.5.0.0 : Ose is NULL : in
+1755862716.925000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::logout : in
+1755862716.925000 [30464] [39252] : R | API+ 13.5.0.0 : logging out...
+1755862716.926000 [30464] [39252] : R | API+ 13.5.0.0 : Ose is NULL : in
+1755862716.926000 [30464] [39252] : R | API+ 13.5.0.0 : Ose is NULL : in
+1755862716.926000 [30464] [39252] : R | API+ 13.5.0.0 : OmneStreamEngine::stop : in
+1755862716.926000 [30464] [39252] : R | API+ 13.5.0.0 : AlertInfo : ||Trading System Connection Closed|2|2|0|
+1755862716.926000 [30464] [39252] : R | API+ 13.5.0.0 : RCallbacks::Alert : in
+1755862716.927000 [30464] [39252] : R | API+ 13.5.0.0 : OmneStreamEngine::~OmneStreamEngine : in
+1755862716.929000 [30464] [39252] : R | API+ 13.5.0.0 : OmneStreamEngine::stop : in
+1755862716.929000 [30464] [39252] : R | API+ 13.5.0.0 : AlertInfo : ||Market Data Connection Closed|2|1|0|
+1755862716.929000 [30464] [39252] : R | API+ 13.5.0.0 : RCallbacks::Alert : in
+1755862716.932000 [30464] [39252] : R | API+ 13.5.0.0 : OmneStreamEngine::~OmneStreamEngine : in
+1755862716.937000 [30464] [39252] : R | API+ 13.5.0.0 : logout successful.
+1755862716.947000 [30464] [39252] : R | API+ 13.5.0.0 : REngine::getOmne : in
+1755862716.947000 [30464] [39252] : R | API+ 13.5.0.0 : OmneEngine::~OmneEngine : in
+1755862716.962000 [30464] [39252] : R | API+ 13.5.0.0 : The R | API log file has been closed.

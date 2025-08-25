@@ -652,7 +652,8 @@ int MyCallbacks::LineUpdate(LineInfo * pInfo,
 
      /*   ----------------------------------------------------------------   */
      /*   record when the order was sent to the exchange... */
-
+     printf("Line Update\n");
+     printf("pInfo->sStatus.iDataLen: %d\n", pInfo->sStatus.iDataLen);
      if (pInfo -> sStatus.iDataLen == sOrderSentToExch.iDataLen &&
 	 memcmp(pInfo -> sStatus.pData, 
 		sOrderSentToExch.pData, 
@@ -660,6 +661,7 @@ int MyCallbacks::LineUpdate(LineInfo * pInfo,
 	  {
 	  g_iToExchSsboe = pInfo -> iSsboe;
 	  g_iToExchUsecs = pInfo -> iUsecs;
+      printf("My Order Completed\n");
 	  printf("→ Order sent to exchange\n");
 	  printf("DEBUG: LineUpdate - Order Number: %.*s\n", pInfo->sOrderNum.iDataLen, pInfo->sOrderNum.pData);
 	  printf("DEBUG: LineUpdate - Order Number Length: %d\n", pInfo->sOrderNum.iDataLen);
@@ -675,6 +677,7 @@ int MyCallbacks::LineUpdate(LineInfo * pInfo,
 
      if (pInfo -> sCompletionReason.pData)
           {
+         printf("Completed Line Update\n");
           printf("-> Order complete: %.*s\n", 
                  pInfo->sCompletionReason.iDataLen, pInfo->sCompletionReason.pData);
           printf("DEBUG: LineUpdate Complete - Order Number: %.*s\n", pInfo->sOrderNum.iDataLen, pInfo->sOrderNum.pData);
@@ -1571,26 +1574,54 @@ int sendRealTimeExitOrder(const char* exchange, const char* ticker, const char* 
     
     printf("Sending REAL TIME EXIT order for %s %s %s at price %.2f, quantity %d\n", side, exchange, ticker, price, quantity);
     
-    MarketOrderParams marketParams;
-    marketParams.pAccount = &g_oAccount;
-    marketParams.sExchange.pData = const_cast<char*>(exchange);
-    marketParams.sExchange.iDataLen = (int)strlen(exchange);
-    marketParams.sTicker.pData = const_cast<char*>(ticker);
-    marketParams.sTicker.iDataLen = (int)strlen(ticker);
-    marketParams.sBuySellType.pData = const_cast<char*>(strcmp(side, "long") == 0 ? "S" : "B");
-    marketParams.sBuySellType.iDataLen = 1;
-    marketParams.sDuration = sORDER_DURATION_DAY;
-    marketParams.sEntryType = sORDER_ENTRY_TYPE_MANUAL;
-    marketParams.iQty = quantity;
-    marketParams.sTradeRoute = g_sTradeRoute;
-    
     int iCode;
-    if (!g_pEngine->sendOrder(&marketParams, &iCode)) {
-        printf("Error sending REAL TIME EXIT order: %d\n", iCode);
-        return BAD;
+    
+    // Use market order when price is 0, limit order when price is not 0
+    if (price == 0.0) {
+        // Market order
+        MarketOrderParams marketParams;
+        marketParams.pAccount = &g_oAccount;
+        marketParams.sExchange.pData = const_cast<char*>(exchange);
+        marketParams.sExchange.iDataLen = (int)strlen(exchange);
+        marketParams.sTicker.pData = const_cast<char*>(ticker);
+        marketParams.sTicker.iDataLen = (int)strlen(ticker);
+        marketParams.sBuySellType.pData = const_cast<char*>(strcmp(side, "long") == 0 ? "S" : "B");
+        marketParams.sBuySellType.iDataLen = 1;
+        marketParams.sDuration = sORDER_DURATION_DAY;
+        marketParams.sEntryType = sORDER_ENTRY_TYPE_MANUAL;
+        marketParams.iQty = quantity;
+        marketParams.sTradeRoute = g_sTradeRoute;
+        
+        if (!g_pEngine->sendOrder(&marketParams, &iCode)) {
+            printf("Error sending REAL TIME EXIT market order: %d\n", iCode);
+            return BAD;
+        }
+        
+        printf("REAL TIME EXIT market order sent successfully\n");
+    } else {
+        // Limit order
+        LimitOrderParams limitParams;
+        limitParams.pAccount = &g_oAccount;
+        limitParams.sExchange.pData = const_cast<char*>(exchange);
+        limitParams.sExchange.iDataLen = (int)strlen(exchange);
+        limitParams.sTicker.pData = const_cast<char*>(ticker);
+        limitParams.sTicker.iDataLen = (int)strlen(ticker);
+        limitParams.sBuySellType.pData = const_cast<char*>(strcmp(side, "long") == 0 ? "S" : "B");
+        limitParams.sBuySellType.iDataLen = 1;
+        limitParams.sDuration = sORDER_DURATION_DAY;
+        limitParams.sEntryType = sORDER_ENTRY_TYPE_MANUAL;
+        limitParams.iQty = quantity;
+        limitParams.dPrice = price;
+        limitParams.sTradeRoute = g_sTradeRoute;
+        
+        if (!g_pEngine->sendOrder(&limitParams, &iCode)) {
+            printf("Error sending REAL TIME EXIT limit order: %d\n", iCode);
+            return BAD;
+        }
+        
+        printf("REAL TIME EXIT limit order sent successfully\n");
     }
     
-    printf("REAL TIME EXIT order sent successfully\n");
     return GOOD;
 }
 
@@ -1921,7 +1952,7 @@ int main(int      argc,
          char * * argv,
          char * * envp)
      {
-     char * USAGE = (char *)"SampleOrder user password exchange ticker [B|S] [order_type] [price] [quantity] [additional_params...]\n";
+     char * USAGE = (char *)"SampleOrder exchange ticker [B|S] [order_type] [price] [quantity] [additional_params...]\n";
 
      MyAdmCallbacks *  pAdmCallbacks;
      RCallbacks *      pCallbacks;
@@ -1942,8 +1973,8 @@ int main(int      argc,
      int               trailTicks = 0;
 
      /*   ----------------------------------------------------------------   */
-
-     if (argc < 6)
+     printf("Customized App\n");
+     if (argc < 4)
           {
           printf("%s", USAGE);
           printf("\nAvailable order types:\n");
@@ -1959,50 +1990,51 @@ int main(int      argc,
           printf("  - trailing_stop: Trailing stop order\n");
           printf("  - time_based: Time-based order (GTC, IOC, FOK)\n");
           printf("\nExamples:\n");
-          printf("  SampleOrder user pass CBOT ZCU5 B open_long 0.0 1    # Market order\n");
-          printf("  SampleOrder user pass CBOT ZCU5 B open_long 450.25 1  # Limit order\n");
-          printf("  SampleOrder user pass CBOT ZCU5 B modify 177693517 450.50 2\n");
-          printf("  SampleOrder user pass CBOT ZCU5 B cancel 177693517\n");
-          printf("  SampleOrder user pass CBOT ZCU5 B bracket 450.25 440.00 460.00 1  # entry stop target qty\n");
-          printf("  SampleOrder user pass CBOT ZCU5 B trailing_stop 440.00 5 1  # stop trail_ticks qty\n");
-          printf("  SampleOrder user pass CBOT ZCU5 B time_based 450.25 1 GTC\n");
+          printf("  SampleOrder CBOT ZCU5 B open_long 0.0 1    # Market order\n");
+          printf("  SampleOrder CBOT ZCU5 B open_long 450.25 1  # Limit order\n");
+          printf("  SampleOrder CBOT ZCU5 B modify 177693517 450.50 2\n");
+          printf("  SampleOrder CBOT ZCU5 B cancel 177693517\n");
+          printf("  SampleOrder CBOT ZCU5 B bracket 450.25 440.00 460.00 1  # entry stop target qty\n");
+          printf("  SampleOrder CBOT ZCU5 B trailing_stop 440.00 5 1  # stop trail_ticks qty\n");
+          printf("  SampleOrder CBOT ZCU5 B time_based 450.25 1 GTC\n");
           printf("Note: Use full contract symbol (e.g., ZCU5 for Corn Dec 2025)\n");
+          printf("Note: Username and password are read from config.ini file\n");
           return (BAD);
           }
 
      /*   ----------------------------------------------------------------   */
      /*   Parse additional arguments */
-     if (argc >= 7) orderType = argv[6];
-     if (argc >= 8) price = atof(argv[7]);
-     if (argc >= 9) quantity = atoi(argv[8]);
+     if (argc >= 5) orderType = argv[4];
+     if (argc >= 6) price = atof(argv[5]);
+     if (argc >= 7) quantity = atoi(argv[6]);
      
      // Parse additional parameters for specific order types
      if (orderType && strcmp(orderType, "modify") == 0) {
-          if (argc >= 8) orderNum = argv[7];
-          if (argc >= 9) price = atof(argv[8]);
-          if (argc >= 10) quantity = atoi(argv[9]);
+          if (argc >= 6) orderNum = argv[5];
+          if (argc >= 7) price = atof(argv[6]);
+          if (argc >= 8) quantity = atoi(argv[7]);
      } else if (orderType && strcmp(orderType, "cancel") == 0) {
-          if (argc >= 8) orderNum = argv[7];
+          if (argc >= 6) orderNum = argv[5];
      } else if (orderType && strcmp(orderType, "bracket") == 0) {
-          if (argc >= 8) price = atof(argv[7]);        // entry_price is argv[7]
-          if (argc >= 9) stopPrice = atof(argv[8]);    // stop_price is argv[8]
-          if (argc >= 10) targetPrice = atof(argv[9]); // target_price is argv[9]
-          if (argc >= 11) quantity = atoi(argv[10]);   // quantity is argv[10]
+          if (argc >= 6) price = atof(argv[5]);        // entry_price is argv[5]
+          if (argc >= 7) stopPrice = atof(argv[6]);    // stop_price is argv[6]
+          if (argc >= 8) targetPrice = atof(argv[7]); // target_price is argv[7]
+          if (argc >= 9) quantity = atoi(argv[8]);   // quantity is argv[8]
           printf("DEBUG: Bracket order parsing - argc=%d, entry=%.2f, stop=%.2f, target=%.2f, qty=%d\n", 
                  argc, price, stopPrice, targetPrice, quantity);
      } else if (orderType && strcmp(orderType, "trailing_stop") == 0) {
-          if (argc >= 8) stopPrice = atof(argv[7]);     // stop_price is argv[7]
-          if (argc >= 9) trailTicks = atoi(argv[8]);    // trail_ticks is argv[8]
-          if (argc >= 10) quantity = atoi(argv[9]);     // quantity is argv[9]
+          if (argc >= 6) stopPrice = atof(argv[5]);     // stop_price is argv[5]
+          if (argc >= 7) trailTicks = atoi(argv[6]);    // trail_ticks is argv[6]
+          if (argc >= 8) quantity = atoi(argv[7]);     // quantity is argv[7]
           printf("DEBUG: Trailing stop parsing - argc=%d, stop=%.2f, trail=%d, qty=%d\n", 
                  argc, stopPrice, trailTicks, quantity);
      } else if (orderType && strcmp(orderType, "time_based") == 0) {
-          if (argc >= 10) duration = argv[9];  // duration is argv[9]
+          if (argc >= 8) duration = argv[7];  // duration is argv[7]
      }
      
      /*   ----------------------------------------------------------------   */
      /*   Validate ticker symbol format */
-     const char* ticker = argv[4];
+     const char* ticker = argv[2];
      if ((int)(int)strlen(ticker) < 3) {
           printf("Error: Invalid ticker symbol '%s'\n", ticker);
           printf("Use full contract symbol (e.g., ZCU5 for Corn Dec 2025)\n");
@@ -2069,7 +2101,7 @@ int main(int      argc,
      }
      
      // Check if required config values exist
-     if (config["Environment.MML_DMN_SRVR_ADDR"].empty() || 
+          if (config["Environment.MML_DMN_SRVR_ADDR"].empty() ||
          config["Environment.MML_DOMAIN_NAME"].empty() ||
          config["Environment.MML_LIC_SRVR_ADDR"].empty() ||
          config["Environment.MML_LOC_BROK_ADDR"].empty() ||
@@ -2080,6 +2112,8 @@ int main(int      argc,
          config["Application.AppName"].empty() ||
          config["Application.AppVersion"].empty() ||
          config["Application.LogFilePath"].empty() ||
+         config["Login.Username"].empty() ||
+         config["Login.Password"].empty() ||
          config["Login.MdCnnctPt"].empty() ||
          config["Login.TsCnnctPt"].empty()) {
           printf("Error: Missing required configuration values in config.ini\n");
@@ -2175,19 +2209,19 @@ int main(int      argc,
 
      oLoginParams.pCallbacks           = pCallbacks;
 
-     oLoginParams.sMdUser.pData        = const_cast<char*>(argv[1]);
+     oLoginParams.sMdUser.pData        = const_cast<char*>(config["Login.Username"].c_str());
      oLoginParams.sMdUser.iDataLen     = (int)(int)strlen(oLoginParams.sMdUser.pData);
 
-     oLoginParams.sMdPassword.pData    = const_cast<char*>(argv[2]);
+     oLoginParams.sMdPassword.pData    = const_cast<char*>(config["Login.Password"].c_str());
      oLoginParams.sMdPassword.iDataLen = (int)(int)strlen(oLoginParams.sMdPassword.pData);
 
      oLoginParams.sMdCnnctPt.pData     = const_cast<char*>(config["Login.MdCnnctPt"].c_str());
      oLoginParams.sMdCnnctPt.iDataLen  = (int)(int)strlen(oLoginParams.sMdCnnctPt.pData);
 
-     oLoginParams.sTsUser.pData        = const_cast<char*>(argv[1]);
+     oLoginParams.sTsUser.pData        = const_cast<char*>(config["Login.Username"].c_str());
      oLoginParams.sTsUser.iDataLen     = (int)(int)strlen(oLoginParams.sTsUser.pData);
 
-     oLoginParams.sTsPassword.pData    = const_cast<char*>(argv[2]);
+     oLoginParams.sTsPassword.pData    = const_cast<char*>(config["Login.Password"].c_str());
      oLoginParams.sTsPassword.iDataLen = (int)(int)strlen(oLoginParams.sTsPassword.pData);
 
      oLoginParams.sTsCnnctPt.pData     = const_cast<char*>(config["Login.TsCnnctPt"].c_str());
@@ -2237,9 +2271,9 @@ int main(int      argc,
      /*   that we want to trade.  This call will return price increment      */
      /*   information as well as set up internal instrument-specific data.   */
 
-     sExchange.pData    = const_cast<char*>(argv[3]);
+     sExchange.pData    = const_cast<char*>(argv[1]);
      sExchange.iDataLen = (int)(int)strlen(sExchange.pData);
-     sTicker.pData      = const_cast<char*>(argv[4]);
+     sTicker.pData      = const_cast<char*>(argv[2]);
      sTicker.iDataLen   = (int)(int)strlen(sTicker.pData);
 
      if (!g_pEngine -> getPriceIncrInfo(&sExchange, &sTicker, &iCode))
@@ -2358,43 +2392,43 @@ int main(int      argc,
     int orderResult = GOOD;
     
     if (orderType && strcmp(orderType, "open_long") == 0) {
-         orderResult = sendOpenLongOrder(argv[3], argv[4], price, quantity);
+                   orderResult = sendOpenLongOrder(argv[1], argv[2], price, quantity);
     } else if (orderType && strcmp(orderType, "open_short") == 0) {
-         orderResult = sendOpenShortOrder(argv[3], argv[4], price, quantity);
+                   orderResult = sendOpenShortOrder(argv[1], argv[2], price, quantity);
     } else if (orderType && strcmp(orderType, "exit_long") == 0) {
-         orderResult = sendRealTimeExitOrder(argv[3], argv[4], "long", price, quantity);
+                   orderResult = sendRealTimeExitOrder(argv[1], argv[2], "long", price, quantity);
     } else if (orderType && strcmp(orderType, "exit_short") == 0) {
-         orderResult = sendRealTimeExitOrder(argv[3], argv[4], "short", price, quantity);
+                   orderResult = sendRealTimeExitOrder(argv[1], argv[2], "short", price, quantity);
     } else if (orderType && strcmp(orderType, "stop_long") == 0) {
-         orderResult = sendStopOrder(argv[3], argv[4], "long", price, quantity);
+                   orderResult = sendStopOrder(argv[1], argv[2], "long", price, quantity);
     } else if (orderType && strcmp(orderType, "stop_short") == 0) {
-         orderResult = sendStopOrder(argv[3], argv[4], "short", price, quantity);
+                   orderResult = sendStopOrder(argv[1], argv[2], "short", price, quantity);
     } else if (orderType && strcmp(orderType, "modify") == 0) {
          if (!orderNum) {
               printf("Error: Order number required for modify order\n");
               orderResult = BAD;
          } else {
-              orderResult = sendModifyOrder(argv[3], argv[4], orderNum, price, quantity);
+              orderResult = sendModifyOrder(argv[1], argv[2], orderNum, price, quantity);
          }
     } else if (orderType && strcmp(orderType, "cancel") == 0) {
          if (!orderNum) {
               printf("Error: Order number required for cancel order\n");
               orderResult = BAD;
          } else {
-              orderResult = sendCancelOrder(argv[3], argv[4], orderNum);
+              orderResult = sendCancelOrder(argv[1], argv[2], orderNum);
          }
     } else if (orderType && strcmp(orderType, "bracket") == 0) {
          printf("DEBUG: Calling sendBracketOrder with: exchange=%s, ticker=%s, side=%s, price=%.2f, stopPrice=%.2f, targetPrice=%.2f, quantity=%d\n", 
-                argv[3], argv[4], argv[5], price, stopPrice, targetPrice, quantity);
-         orderResult = sendBracketOrder(argv[3], argv[4], argv[5], price, stopPrice, targetPrice, quantity);
+                argv[1], argv[2], argv[3], price, stopPrice, targetPrice, quantity);
+         orderResult = sendBracketOrder(argv[1], argv[2], argv[3], price, stopPrice, targetPrice, quantity);
     } else if (orderType && strcmp(orderType, "trailing_stop") == 0) {
-         orderResult = sendTrailingStopOrder(argv[3], argv[4], argv[5], stopPrice, trailTicks, quantity);
+         orderResult = sendTrailingStopOrder(argv[1], argv[2], argv[3], stopPrice, trailTicks, quantity);
     } else if (orderType && strcmp(orderType, "time_based") == 0) {
          if (!duration) {
               printf("Error: Duration required for time-based order (GTC, IOC, FOK)\n");
               orderResult = BAD;
          } else {
-              orderResult = sendTimeBasedOrder(argv[3], argv[4], argv[5], price, quantity, duration);
+              orderResult = sendTimeBasedOrder(argv[1], argv[2], argv[3], price, quantity, duration);
          }
     } else {
          // Default behavior - original market order
@@ -2402,7 +2436,7 @@ int main(int      argc,
          oMktOrdParams.sTicker               = sTicker;
          oMktOrdParams.pAccount              = &g_oAccount;
          oMktOrdParams.iQty                  = quantity;
-         oMktOrdParams.sBuySellType.pData    = const_cast<char*>(argv[5]);
+         oMktOrdParams.sBuySellType.pData    = const_cast<char*>(argv[3]);
          oMktOrdParams.sBuySellType.iDataLen = (int)(int)strlen(oMktOrdParams.sBuySellType.pData);
          oMktOrdParams.sDuration             = sORDER_DURATION_DAY;
          oMktOrdParams.sEntryType            = sORDER_ENTRY_TYPE_MANUAL;
